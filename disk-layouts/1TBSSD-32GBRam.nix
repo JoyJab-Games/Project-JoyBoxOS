@@ -1,8 +1,9 @@
+{ disk-target, ... }:
 {
   disko.devices = {
     disk = {
       main = {
-        device = "/dev/nvme0n1";
+        device = disk-target;
         type = "disk";
         content = {
           type = "gpt";
@@ -18,7 +19,7 @@
                 mountOptions = [ "umask=0077" ];
               };
             };
-            # 2. Swap Partition (8GB is plenty for your RAM)
+            # 2. Swap Partition 8GB
             swap = {
               size = "8G";
               content = {

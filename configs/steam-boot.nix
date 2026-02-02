@@ -5,7 +5,6 @@
     ./modules/common.nix
     ./modules/arcade-mashine.nix
     ./modules/admin-desktop.nix
-    ./modules/virt.nix
     ./modules/plymouth-joyjab-arcade
   ];
 
