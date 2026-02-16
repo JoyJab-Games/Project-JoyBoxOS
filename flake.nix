@@ -2,14 +2,16 @@
   description = "JoyJab Arcade Machine Flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
-
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
+    disko.url = "github:nix-community/disko";
   };
 
-  outputs = { self, nixpkgs, disko, ... }:
+  outputs = { self, nixpkgs, jovian, disko, ... }:
   let
     mkMachine = name: hardware: role: nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
+      specialArgs = { inherit jovian; };
       modules = [
         disko.nixosModules.disko
         ./modules/common

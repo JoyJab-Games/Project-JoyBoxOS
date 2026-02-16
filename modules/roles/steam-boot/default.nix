@@ -1,8 +1,8 @@
 { ... }:
 {
     imports = [
-        ./admin-profile.nix
-        ./arcade-mashine.nix
+        ./admin.nix
+        ./arcade.nix
         ./plymouth-joyjab-arcade
     ];
 }

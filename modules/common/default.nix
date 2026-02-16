@@ -1,12 +1,13 @@
 { ... }: {
 
+  system.stateVersion = "24.11";
+
   hardware.graphics = {
     enable = true;
     enable32Bit = true; # Required for many games/Steam
   };
 
   networking.networkmanager.enable = true;
-  console.keyMap = "de";
 
   services.pipewire = {
     enable = true;
@@ -18,6 +19,7 @@
   };
 
   # germansky
+  console.keyMap = "de";
   time.timeZone = "Europe/Berlin";
   i18n.defaultLocale = "de_DE.UTF-8";
   i18n.extraLocaleSettings = {
@@ -35,6 +37,4 @@
     xkb.layout = "de";
     xkb.variant = "nodeadkeys";
   };
-
-  system.stateVersion = "24.11";
 }
