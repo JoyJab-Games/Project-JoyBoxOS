@@ -2,7 +2,7 @@
 {
     imports = [
         ./admin.nix
-        ./arcade.nix
+        ./gamescope-session.nix
         ./plymouth-joyjab-arcade
     ];
 }

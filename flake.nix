@@ -3,15 +3,25 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
-    jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
     disko.url = "github:nix-community/disko";
+    # arcade-launcher-corpo: the actual game launcher this cabinet boots
+    # into (see modules/roles/arcade-boot) - packages.default/arcade-cli.
+    # No `inputs.nixpkgs.follows` here: it pins its own nixpkgs for its
+    # Rust/Godot build reproducibility (see its own nixos/default.nix),
+    # deliberately not required to match this flake's nixpkgs revision.
+    # git+ssh, not github: - arcade-launcher-corpo is a private repo, and
+    # the github: shorthand needs a GitHub API token (nix.conf
+    # access-tokens) for private repos, which building this flake
+    # shouldn't have to depend on for every dev. SSH key access is
+    # already the expected baseline for anyone working on this anyway.
+    arcade-launcher.url = "git+ssh://git@github.com/JoyJab-Games/arcade-launcher-corpo.git";
   };
 
-  outputs = { self, nixpkgs, jovian, disko, ... }:
+  outputs = { self, nixpkgs, disko, arcade-launcher, ... }:
   let
     mkMachine = name: hardware: role: nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = { inherit jovian; };
+      specialArgs = { inherit arcade-launcher; };
       modules = [
         disko.nixosModules.disko
         ./modules/common
@@ -24,7 +34,7 @@
     version = versionData.version;
   in {
     nixosConfigurations = {
-      "geekom-a6-steam-boot" = mkMachine "geekom-a6-steam-boot" "geekom-a6" "steam-boot";
+      "geekom-a6-arcade-boot" = mkMachine "geekom-a6-arcade-boot" "geekom-a6" "arcade-boot";
     };
   };
 }
