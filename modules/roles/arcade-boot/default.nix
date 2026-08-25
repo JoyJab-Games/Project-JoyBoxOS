@@ -5,5 +5,6 @@
         ./gamescope-session.nix
         ./arcade-data.nix
         ./plymouth-joyjab-arcade
+        ./polkit.nix
     ];
 }
