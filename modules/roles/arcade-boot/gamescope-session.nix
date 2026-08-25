@@ -36,7 +36,7 @@ let
       runHook preInstall
       install -Dm755 "$src" "$out/bin/arcade-gamescope-session"
       wrapProgram "$out/bin/arcade-gamescope-session" \
-        --prefix PATH : ${pkgs.lib.makeBinPath [ pkgs.gamescope arcadeLauncherPkg ]}
+        --prefix PATH : ${pkgs.lib.makeBinPath [ pkgs.gamescope arcadeLauncherPkg pkgs.steam-run ]}
       runHook postInstall
     '';
   };

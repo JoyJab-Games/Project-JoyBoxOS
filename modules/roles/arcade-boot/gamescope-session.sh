@@ -69,11 +69,23 @@ echo "$(date -Is) gamescope signaled readiness: DISPLAY=$display WAYLAND_DISPLAY
 export DISPLAY="$display"
 export WAYLAND_DISPLAY="$wayland_display"
 
+# steam-run: arcade-launcher's Godot-exported binary is a normal
+# dynamically-linked ELF built for a generic FHS Linux layout (standard
+# /lib64/ld-linux-x86-64.so.2 etc.) - it isn't patchelf'd for NixOS (that
+# belongs in arcade-launcher-corpo's own packaging, not here), so without
+# an FHS environment the kernel can't even find its dynamic linker
+# ("Could not start dynamically linked executable", exit 127) - it never
+# gets as far as rendering anything. steam-run is already pulled into
+# this closure transitively via gamescope and already
+# unfree-allowlisted (see allowUnfreePredicate below); wrapping with it
+# is a same-closure unblock, not a real fix - drop this once
+# arcade-launcher-corpo patches its own binary properly.
+#
 # `if`-guarded rather than a bare call: under `set -e`, an unguarded
 # nonzero exit here would jump straight to the EXIT trap and skip the
 # status logging below entirely - a command directly in an `if`
 # condition is exempt from -e.
-if arcade-launcher; then
+if steam-run arcade-launcher; then
   launcher_status=0
 else
   launcher_status=$?
