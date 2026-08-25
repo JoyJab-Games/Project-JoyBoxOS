@@ -6,15 +6,16 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1787527562,
-        "narHash": "sha256-95/uNUF8bCL/3MMfmo5V+VOHuo7fGAAQv/5rTmIIepA=",
-        "ref": "refs/heads/main",
-        "rev": "9fcc6c6f5f479829c3ce22f933fb37b59b105052",
-        "revCount": 8,
+        "lastModified": 1787633599,
+        "narHash": "sha256-Z7ntXQ7K124ku4W4MRN2NFtw9chaR028Knj+NB7SDhY=",
+        "ref": "hardware-gamescope-test",
+        "rev": "743cc2712829440f740db57e2d854a62e99d58c0",
+        "revCount": 13,
         "type": "git",
         "url": "ssh://git@github.com/JoyJab-Games/arcade-launcher-corpo.git"
       },
       "original": {
+        "ref": "hardware-gamescope-test",
         "type": "git",
         "url": "ssh://git@github.com/JoyJab-Games/arcade-launcher-corpo.git"
       }

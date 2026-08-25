@@ -14,7 +14,13 @@
     # access-tokens) for private repos, which building this flake
     # shouldn't have to depend on for every dev. SSH key access is
     # already the expected baseline for anyone working on this anyway.
-    arcade-launcher.url = "git+ssh://git@github.com/JoyJab-Games/arcade-launcher-corpo.git";
+    #
+    # ?ref=hardware-gamescope-test: TEMPORARY, for real-hardware testing
+    # of arcade-launcher-corpo's still-unmerged in-game overview/overlay
+    # work (evdev overview input, gamescope embedded-mode dev-testing
+    # docs) before it lands on that repo's main. Point this back at plain
+    # `main` (drop the `?ref=...`) once that branch is merged there.
+    arcade-launcher.url = "git+ssh://git@github.com/JoyJab-Games/arcade-launcher-corpo.git?ref=hardware-gamescope-test";
   };
 
   outputs = { self, nixpkgs, disko, arcade-launcher, ... }:
