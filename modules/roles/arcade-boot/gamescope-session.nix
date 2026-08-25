@@ -98,11 +98,29 @@ in
     "steam-run"
   ];
 
+  # /var/log/arcade: destination for gamescope-session.sh's TEMPORARY
+  # diagnostic log (see that file) - $XDG_RUNTIME_DIR gets torn down when
+  # the session ends, so it can't be used for anything meant to survive
+  # to be read over SSH afterward. Owned by gamer (the user the session
+  # actually runs as), not root, so the script can write to it without
+  # needing a setuid helper.
+  systemd.tmpfiles.rules = [
+    "d /var/log/arcade 0755 gamer users -"
+  ];
+
   environment.systemPackages = [
     # For SSH admin access (see ./admin.nix) - `arcade install`/`update`/
     # `release`/`select`/etc., same commands documented throughout
     # arcade-launcher-corpo.
     arcadeCliPkg
     pkgs.steamcmd
+    # Same pkgs.gamescope reference the wrapped session script's PATH is
+    # built from (see gamescopeSession's wrapProgram above) - installing
+    # it globally too means manual testing (`gamescope --steam -- ...`
+    # from an admin shell) is always running the exact same store path/
+    # version the real session does, not a coincidentally-similar one.
+    # Before this, finding it for manual testing meant digging the store
+    # path out of the wrapped script by hand.
+    pkgs.gamescope
   ];
 }
