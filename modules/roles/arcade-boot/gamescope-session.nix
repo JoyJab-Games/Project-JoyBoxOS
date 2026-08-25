@@ -64,6 +64,24 @@ in
       command = "${gamescopeSession}/bin/arcade-gamescope-session";
       user = "gamer";
     };
+    # greetd itself (not just the NixOS module) hard-requires
+    # default_session to have a command - it refuses to start at all
+    # ("default_session contains no command") if it's absent, regardless
+    # of initial_session being set. This is agreety (greetd's own bundled
+    # minimal text greeter, running as the module-provided "greeter"
+    # user), used only as the fallback if initial_session ever exits -
+    # gives an admin a real login prompt on the physical screen to
+    # recover from, rather than a permanently black one.
+    settings.default_session = {
+      command = "${pkgs.greetd}/bin/agreety --cmd bash";
+      user = "greeter";
+    };
+    # No explicit `restart` needed: the module already defaults it to
+    # `!(cfg.settings ? initial_session)`, i.e. false as soon as
+    # initial_session is set - confirmed by reading the pinned nixpkgs
+    # module source directly rather than assuming. Left unset
+    # deliberately so it keeps tracking that default instead of drifting
+    # from it.
   };
 
   # steamcmd (arcade install/update's real Steam depot downloads) is
