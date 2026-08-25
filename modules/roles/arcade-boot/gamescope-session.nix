@@ -51,7 +51,16 @@ in
 
   services.greetd = {
     enable = true;
-    settings.default_session = {
+    # initial_session, not default_session: default_session is greetd's
+    # slot for a real *greeter* (a program that speaks greetd's IPC
+    # protocol to prompt for credentials and then request a session) -
+    # pointing it straight at this plain script makes greetd treat every
+    # exit as a crashed greeter ("greeter exited without creating a
+    # session"), retry, and eventually hit its restart-rate-limit and
+    # give up for good. initial_session is the actual no-greeter
+    # autologin mechanism: it runs this command directly as `user` on
+    # first VT activation, no IPC handshake required.
+    settings.initial_session = {
       command = "${gamescopeSession}/bin/arcade-gamescope-session";
       user = "gamer";
     };
