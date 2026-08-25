@@ -8,16 +8,16 @@
       "locked": {
         "lastModified": 1787633599,
         "narHash": "sha256-Z7ntXQ7K124ku4W4MRN2NFtw9chaR028Knj+NB7SDhY=",
-        "ref": "hardware-gamescope-test",
+        "owner": "JoyJab-Games",
+        "repo": "arcade-launcher-corpo",
         "rev": "743cc2712829440f740db57e2d854a62e99d58c0",
-        "revCount": 13,
-        "type": "git",
-        "url": "ssh://git@github.com/JoyJab-Games/arcade-launcher-corpo.git"
+        "type": "github"
       },
       "original": {
+        "owner": "JoyJab-Games",
         "ref": "hardware-gamescope-test",
-        "type": "git",
-        "url": "ssh://git@github.com/JoyJab-Games/arcade-launcher-corpo.git"
+        "repo": "arcade-launcher-corpo",
+        "type": "github"
       }
     },
     "disko": {
