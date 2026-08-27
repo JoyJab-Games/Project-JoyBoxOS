@@ -28,5 +28,14 @@
   # owned by a user that can't act on them - confirmed to actually bite on
   # real hardware 2026-08-25 (installed as admin, "Operation not
   # permitted" chmod failure when gamer's session tried to launch it).
-  environment.shellAliases.arcade = "sudo -u gamer arcade";
+  #
+  # Plain `sudo -u gamer` switches uid but leaves the working directory
+  # untouched, i.e. still admin's SSH login cwd (/home/admin, mode 700).
+  # steamcmd's bubblewrap sandbox tries to chdir into that same cwd inside
+  # its mount namespace, and gamer can't enter admin's home directory, so
+  # bwrap fails with "Can't chdir to /home/admin: Permission denied" before
+  # steamcmd even runs. `-i` makes sudo start a real login shell for
+  # gamer (cwd = /home/gamer, $HOME set accordingly), which bwrap can
+  # chdir into fine - confirmed 2026-08-27.
+  environment.shellAliases.arcade = "sudo -i -u gamer arcade";
 }
