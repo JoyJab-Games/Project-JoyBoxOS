@@ -14,12 +14,12 @@
     # be private and required git+ssh; switch back only if it goes private
     # again.)
     #
-    # ?ref=hardware-gamescope-test: TEMPORARY, for real-hardware testing
-    # of arcade-launcher-corpo's still-unmerged in-game overview/overlay
-    # work (evdev overview input, gamescope embedded-mode dev-testing
-    # docs) before it lands on that repo's main. Point this back at plain
-    # `main` (drop the `?ref=...`) once that branch is merged there.
-    arcade-launcher.url = "github:JoyJab-Games/arcade-launcher-corpo/hardware-gamescope-test";
+    # hardware-gamescope-test's in-game overview/overlay work (evdev
+    # overview input, gamescope embedded-mode dev-testing docs) plus the
+    # steamcmd Windows-platform-detection fix (2026-08-27) are now
+    # confirmed working on real hardware and merged to main (fast-forward,
+    # 90c9f08..2316629) - back to tracking plain `main`, no `?ref=...`.
+    arcade-launcher.url = "github:JoyJab-Games/arcade-launcher-corpo";
   };
 
   outputs = { self, nixpkgs, disko, arcade-launcher, ... }:

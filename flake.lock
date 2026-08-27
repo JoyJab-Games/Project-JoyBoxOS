@@ -6,16 +6,15 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1787633599,
-        "narHash": "sha256-Z7ntXQ7K124ku4W4MRN2NFtw9chaR028Knj+NB7SDhY=",
+        "lastModified": 1787816331,
+        "narHash": "sha256-lTsGBS0hrJc5kzFkCoa6mw3WNL66wAkvs7Ll1uw6X5k=",
         "owner": "JoyJab-Games",
         "repo": "arcade-launcher-corpo",
-        "rev": "743cc2712829440f740db57e2d854a62e99d58c0",
+        "rev": "2316629902a3740a315986932c6c3e5578a9c4fa",
         "type": "github"
       },
       "original": {
         "owner": "JoyJab-Games",
-        "ref": "hardware-gamescope-test",
         "repo": "arcade-launcher-corpo",
         "type": "github"
       }
